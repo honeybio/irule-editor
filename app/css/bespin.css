@@ -1,0 +1,56 @@
+
+.cm-s-bespin.CodeMirror {background: #28211c; color: #9d9b97; font-weight: normal;}
+.cm-s-bespin div.CodeMirror-selected {background: #36312e !important;}
+.cm-s-bespin .CodeMirror-gutters {background: #28211c; border-right: 0px;}
+.cm-s-bespin .CodeMirror-linenumber {color: #666666;}
+.cm-s-bespin .CodeMirror-cursor {border-left: 1px solid #797977 !important;}
+
+.cm-s-bespin span.cm-comment {color: #666666;}
+.cm-s-bespin span.cm-atom {color: #9b859d;}
+.cm-s-bespin span.cm-number {color: #9b859d;}
+
+.cm-s-bespin span.cm-property, .cm-s-bespin span.cm-attribute {color: #54be0d;}
+.cm-s-bespin span.cm-keyword {color: #39ac73;}
+.cm-s-bespin span.cm-string {color: #f9ee98;}
+.cm-s-bespin span.cm-event {color: #ffc266;}
+.cm-s-bespin span.cm-eventname { color: #ffc266;}
+.cm-s-bespin span.cm-httpvariables { color: #e066ff;}
+.cm-s-bespin span.cm-operator { color: #e066ff;}
+
+.cm-s-bespin span.cm-f5operator { color: #39ac73;}
+.cm-s-bespin span.cm-f5object { color: #39ac73;}
+.cm-s-bespin span.cm-accessevent { color: #ffc266;}
+.cm-s-bespin span.cm-adaptevent { color: #ffc266;}
+.cm-s-bespin span.cm-asmevent { color: #ffc266;}
+.cm-s-bespin span.cm-authevent { color: #ffc266;}
+.cm-s-bespin span.cm-cacheevent { color: #ffc266;}
+.cm-s-bespin span.cm-categoryevent { color: #ffc266;}
+.cm-s-bespin span.cm-clienttcpevent { color: #ffc266;}
+.cm-s-bespin span.cm-clientsslevent { color: #ffc266;}
+.cm-s-bespin span.cm-diameterevent { color: #ffc266;}
+.cm-s-bespin span.cm-fixevent { color: #ffc266;}
+.cm-s-bespin span.cm-htmlevent { color: #ffc266;}
+.cm-s-bespin span.cm-httpevent { color: #ffc266;}
+.cm-s-bespin span.cm-icapevent { color: #ffc266;}
+.cm-s-bespin span.cm-dosevent { color: #ffc266;}
+.cm-s-bespin span.cm-lbevent { color: #ffc266;}
+.cm-s-bespin span.cm-dnsevent { color: #ffc266;}
+.cm-s-bespin span.cm-rtspevent { color: #ffc266;}
+.cm-s-bespin span.cm-ruleinitevent { color: #ffc266;}
+.cm-s-bespin span.cm-serverevent { color: #ffc266;}
+.cm-s-bespin span.cm-serversslevent { color: #ffc266;}
+.cm-s-bespin span.cm-sipevent { color: #ffc266;}
+.cm-s-bespin span.cm-miscevent { color: #ffc266;}
+.cm-s-bespin span.cm-xmlevent { color: #ffc266;}
+
+.cm-s-bespin span.cm-variable {color: #3399ff;}
+.cm-s-bespin span.cm-variable-2 {color: #33ffd6;}
+.cm-s-bespin span.cm-def {color: #cf7d34;}
+.cm-s-bespin span.cm-error {background: #cf6a4c; color: #797977;}
+.cm-s-bespin span.cm-bracket {color: #39ac73;}
+.cm-s-bespin span.cm-curlybrace {color: #39ac73;}
+.cm-s-bespin span.cm-tag {color: #cf6a4c;}
+.cm-s-bespin span.cm-link {color: #39ac73;}
+
+.cm-s-bespin .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
+.cm-s-bespin .CodeMirror-activeline-background { background: #404040;}
