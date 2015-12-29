@@ -2,6 +2,7 @@ var gulp      = require('gulp'),
     concat    = require('gulp-concat'),
     del       = require('del'),
     gulpIf    = require('gulp-if'),
+    htmlclean = require('gulp-htmlclean'),
     imagemin  = require('gulp-imagemin'),
     jshint    = require('gulp-jshint'),
     nano      = require('gulp-cssnano'),
@@ -15,6 +16,7 @@ gulp.task('buildweb', function(){
     .pipe(useref())
     .pipe(gulpIf('*.css', nano()))
     .pipe(gulpIf('*.js', uglify()))
+    .pipe(htmlclean())
     .pipe(gulp.dest('dist'))
 });
 
