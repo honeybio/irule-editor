@@ -1,0 +1,14 @@
+when HTTP_REQUEST {
+  if {[HTTP::uri] eq class_honeyb_redirect} {
+    HTTP::redirect "https://honeyb.io/irule-editor"
+    return
+  }
+}
+when HTTP_RESPONSE {
+  if {[HTTP::status eq '200']} {
+    return
+  } else {
+    # Drop and delete connection
+    drop
+  }
+}

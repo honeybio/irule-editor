@@ -6,8 +6,7 @@ var gulp      = require('gulp'),
     jshint    = require('gulp-jshint'),
     nano      = require('gulp-cssnano'),
     uglify    = require('gulp-uglify'),
-    useref    = require('gulp-useref'),
-    htmlmin   = require('gulp-htmlmin');
+    useref    = require('gulp-useref');
 
 gulp.task('default', ['images', 'buildweb']);
 

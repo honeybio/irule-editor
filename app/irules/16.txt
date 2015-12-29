@@ -1,0 +1,21 @@
+when RULE_INIT {
+  set input { "1234" "123456789012345678901234567890123456789012345678901234567890xxxx" "yyyy123456789012345678901234567890123456789012345678901234567890xxxx" }
+  foreach prekey $input {
+    switch [string length $prekey] {
+      "64" { set key [sha256 $prekey] }
+      default { key $prekey }
+    }
+    set ipad ""
+    set opad ""
+    for { set j 0 }{ $j < [string length $key] }{ incr j }{
+        binary scan $key @${j}H2 k
+        append ipad [format %c [expr 0x$k ^ 0x36]]
+        append opad [format %c [expr 0x$k ^ 0x5c]]
+    }
+    for { }{ $j < 64 }{ incr j }{ 
+        append ipad 6 \\
+    }
+    binary scan [sha256 $opad[sha256 "${ipad}test"]] H* hextoken
+    log -noname local0. [string toupper "result  = $hextoken"]
+  }
+}

@@ -1,0 +1,6 @@
+when HTTP_REQUEST {
+  virtual [name of APM VIP]
+}
+when HTTP_RESPONSE {
+  HTTP::header insert Strict-Transport-Security "max-age=31708800"
+}

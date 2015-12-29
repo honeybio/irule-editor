@@ -1,0 +1,51 @@
+when RULE_INIT {
+  set ::rate 30
+  set ::window 300
+  set ::purge_interval 10
+  set ::last_purge [clock seconds]
+  array set ::hit_list ""
+  array unset ::hit_list
+  array set ::block_state ""
+  array unset ::block_state
+  array set ::hit_count ""
+  array unset ::hit_count
+}
+when HTTP_REQUEST {
+  if { [matchclass [string tolower [HTTP::path]] ends_with $::limit_uris] } {
+	# add this hit to the list
+    set current_time [clock seconds]
+    set request_id "[HTTP::host]_[expr { int(1000000 * rand()) }]"
+    set ::hit_list($request_id) $current_time
+    set window_start [expr $current_time - $::window]
+    if { not [info exists ::block_state([HTTP::host])] } {
+      set ::block_state([HTTP::host]) 0
+      set ::hit_count([HTTP::host]) 0
+    }
+	  # count hits and purge old ones
+    if { [expr $current_time - $::last_purge] > $::purge_interval } {
+      set ::last_purge $current_time
+      set count 0
+      foreach { request_id request_time } [array get ::hit_list [HTTP::host]*] {
+        if { $request_time < $window_start } {
+          unset ::hit_list($request_id)
+        } else {
+          incr count
+        }
+      }
+      set ::hit_count([HTTP::host]) $count
+    }
+	  # block the page
+    if { $::hit_count([HTTP::host]) > $::rate } {
+      HTTP::respond 503 content "<html><head><title>Page Limited</title><body><h3>This page is being limited due to excessive use. Please try again later</h3></body></html>"
+	     #log only if first block of this page for this go-round
+      if { $::block_state([HTTP::host]) == 0 } {
+        log local0. "Started blocking [HTTP::host]"
+        set ::block_state([HTTP::host]) 1
+      }
+    # log that blocking has stopped
+    } elseif { $::block_state([HTTP::host]) == 1 } {
+      log local0. "Stopped blocking [HTTP::host]"
+      set ::block_state([HTTP::host]) 0
+    }
+  }
+}

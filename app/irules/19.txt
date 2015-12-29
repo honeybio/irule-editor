@@ -1,0 +1,8 @@
+when CLIENT_ACCEPTED {
+  set dpool [LB::server pool]
+}
+
+when HTTP_REQUEST {
+  if { [active_members pool $dpool] < 1 } {
+    HTTP::redirect "http://maintenancepage.html" }
+}

@@ -1,0 +1,14 @@
+when HTTP_REQUEST {
+  # Hide the SSL:: command from the iRule parser
+  # so the iRule can be used on a non-client SSL VS
+  set cipher_cmd "SSL::cipher version"
+
+  # Check if the client used an SSL cipher and it's not "none"
+  if {not ([catch {eval $cipher_cmd} result]) && $result ne "none"}{
+    # Client did use a cipher
+    set proto "https"
+  } else {
+    # Client did not use a cipher
+    set proto "http"
+  }
+}

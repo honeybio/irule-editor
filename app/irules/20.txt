@@ -1,0 +1,25 @@
+when HTTP_REQUEST {
+  # Collect up to 1Mb of POST data
+	if { [HTTP::method] equals "POST"}{
+		set clength 0
+		if {[HTTP::header "Content-Length"] ne "" && [HTTP::header "Content-Length"] <= 1048576 }{
+			set clength [HTTP::header Content-Length]
+		} else {
+			set clength 1048576
+		}
+		if { $clength > 0} {
+			HTTP::collect $clength
+		}
+	}
+}
+
+when HTTP_REQUEST_DATA {
+	# Check if the collected payload contains more than 100 parameters
+	if { [llength [split [HTTP::payload] &]] > 100 } {
+		log local0.alert "Microsoft Security Advisory (2659883)\
+			IP Address [IP::client_addr]:[TCP::client_port] requested [HTTP::uri]"
+
+		# Drop the request
+		drop
+	}
+}

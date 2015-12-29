@@ -1,0 +1,21 @@
+when CLIENT_ACCEPTED {
+  log local0. "[IP::client_addr]:[TCP::client_port]: Received connection with active members: [active_members [LB::server pool]]"
+  # Check if there are members available in the VIP's default pool
+  if {[active_members [LB::server pool]]}{
+    # Disable the client SSL profile so the HTTPS traffic is passed through encrypted to the node
+    SSL::disable
+    # Disable the HTTP profile as we're not going to redirect this request
+    HTTP::disable
+    log local0. "[IP::client_addr]:[TCP::client_port]: Members available"
+  }
+}
+when HTTP_REQUEST {
+  # The HTTP_REQUEST event is only triggered if the pool members are down and the client SSL and HTTP profiles are left enabled
+  # Redirect the client
+  HTTP::redirect https://maintenance.example.com
+  # Close the TCP connection so that the pool is checked for every HTTP request
+  #   This should prevent clients from being continuing to be redirected after the pool comes up
+  #   (which would happen if they re-used the same TCP connection).
+  TCP::close
+  log local0. "[IP::client_addr]:[TCP::client_port]: Redirecting request" 
+}
