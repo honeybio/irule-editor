@@ -8,7 +8,7 @@ var gulp      = require('gulp'),
     uglify    = require('gulp-uglify'),
     useref    = require('gulp-useref');
 
-gulp.task('default', ['images', 'buildweb', 'copyirules']);
+gulp.task('default', ['images', 'buildweb', 'copyirules', 'copyphp']);
 
 gulp.task('buildweb', function(){
   return gulp.src('app/*.html')
@@ -27,4 +27,9 @@ gulp.task('images', function() {
 gulp.task('copyirules', function() {
   return gulp.src('app/irules/*')
     .pipe(gulp.dest('dist/irules'));
+});
+
+gulp.task('copyphp', function() {
+  return gulp.src('app/*.php')
+    .pipe(gulp.dest('dist'));
 });
