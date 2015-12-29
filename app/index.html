@@ -5,6 +5,8 @@
     <meta name="description" content="Free Online Mac Compatible iRule Editor - start building BIG-IP iRules. Full featured with auto-complete, suggestions, syntax highlighting, error checking and more!">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="googlebot" content="all" />
+    <meta http-equiv="content-language" content="en-us">
     <style>
 .no-js #loader {display: none;}
 .js #loader {display: block; position: absolute; left: 100px; top: 0;}
@@ -15,6 +17,7 @@
     <!-- This is the local CSS data and bespin theme -->
 
     <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/bespin.css">
@@ -44,7 +47,7 @@
   <body>
 
     <!-- Grey loading div across everything -->
-    <div class="se-pre-con"><p><img src="images/spinner.svg"></img></p></div>
+    <div class="se-pre-con"><div class="loader">Loading...</div></div>
 
     <!-- Navbar on the top -->
     <nav class="navbar navbar-default">
@@ -90,16 +93,16 @@
                 <a href="#" aria-expanded="false">My BIG-IPs <span class="glyphicon arrow"></span></a>
                 <ul id="bigip-list" aria-expanded="false">
                   <li><a href="#" id='add-bigip' data-toggle="modal" data-target="#rest-discover-modal">Add a BIG-IP <span class="fa plus-times"></span></a></li>
-                  <li><a href="#" id='1-bigip' aria-expanded="false">big</a><ul id='1-bigip-rule-list' aria-expanded="false"><li><a id='irule-01' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='2-bigip' aria-expanded="false">big</a><ul id='2-bigip-rule-list' aria-expanded="false"><li><a id='irule-02' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='3-bigip' aria-expanded="false">big</a><ul id='3-bigip-rule-list' aria-expanded="false"><li><a id='irule-03' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='4-bigip' aria-expanded="false">big</a><ul id='4-bigip-rule-list' aria-expanded="false"><li><a id='irule-04' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='5-bigip' aria-expanded="false">big</a><ul id='5-bigip-rule-list' aria-expanded="false"><li><a id='irule-05' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='6-bigip' aria-expanded="false">big</a><ul id='6-bigip-rule-list' aria-expanded="false"><li><a id='irule-06' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='7-bigip' aria-expanded="false">big</a><ul id='7-bigip-rule-list' aria-expanded="false"><li><a id='irule-07' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='8-bigip' aria-expanded="false">big</a><ul id='8-bigip-rule-list' aria-expanded="false"><li><a id='irule-08' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='9-bigip' aria-expanded="false">big</a><ul id='9-bigip-rule-list' aria-expanded="false"><li><a id='irule-09' class="hidden" href="#">blank</a></li></ul></li>
-                  <li><a href="#" id='10-bigip' aria-expanded="false">big</a><ul id='10-bigip-rule-list' aria-expanded="false"><li><a id='irule-10' class="hidden" href="#">blank</a></li></ul></li>
+                  <li><a href="#" id='1-bigip' aria-expanded="false"> </a><ul id='1-bigip-rule-list' aria-expanded="false"><li><a id='irule-01' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='2-bigip' aria-expanded="false"> </a><ul id='2-bigip-rule-list' aria-expanded="false"><li><a id='irule-02' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='3-bigip' aria-expanded="false"> </a><ul id='3-bigip-rule-list' aria-expanded="false"><li><a id='irule-03' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='4-bigip' aria-expanded="false"> </a><ul id='4-bigip-rule-list' aria-expanded="false"><li><a id='irule-04' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='5-bigip' aria-expanded="false"> </a><ul id='5-bigip-rule-list' aria-expanded="false"><li><a id='irule-05' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='6-bigip' aria-expanded="false"> </a><ul id='6-bigip-rule-list' aria-expanded="false"><li><a id='irule-06' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='7-bigip' aria-expanded="false"> </a><ul id='7-bigip-rule-list' aria-expanded="false"><li><a id='irule-07' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='8-bigip' aria-expanded="false"> </a><ul id='8-bigip-rule-list' aria-expanded="false"><li><a id='irule-08' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='9-bigip' aria-expanded="false"> </a><ul id='9-bigip-rule-list' aria-expanded="false"><li><a id='irule-09' class="hidden" href="#"> </a></li></ul></li>
+                  <li><a href="#" id='10-bigip' aria-expanded="false"> </a><ul id='10-bigip-rule-list' aria-expanded="false"><li><a id='irule-10' class="hidden" href="#"> </a></li></ul></li>
                 </ul>
               </li>
               <li>
@@ -124,8 +127,9 @@
             <div class="col-md-12">
               <div id="help-panel" class="panel panel-default">
                 <div class="panel-heading">
-                  honeyb.io iRule Editor: Please read our privacy policy & how to use.
-                  <span id="close-help-panel" class="pull-right">X</span>
+                  Check our knowledge base articles, privacy policy and how to use honeyb. Interested in the source? Sign up for our beta and get access!
+                  <span id="close-help-panel" class="pull-right"><i class="fa fa-times"></i></span>
+                  <p><h1 class="regular-size">honeyb.io iRule editor: Browser-based Windows, Linux, Mac iRule Editor</h1></p>
                 </div>
               </div>
             </div>
