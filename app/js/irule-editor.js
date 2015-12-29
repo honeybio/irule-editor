@@ -338,14 +338,14 @@ $("#discover-form").on('submit', function(e){
     var response = '<div id="discover-response" style="padding: 20px;"><center><h3>Success!</h3></center></div>';
     $('#discover-body').hide();
     $('#discover-response').replaceWith(response);
-    $('#discover-response').show()
+    $('#discover-response').show();
   }, function(jqXHR) {
     var response = '<div id="discover-response" style="padding: 20px;"><center><h3>Error Connecting</h3></center>' +
     '<p>jQuery doesn\'t give back much information, this could be due to invalid username/password, ' +
     'bad hostname or ip, etc. You can check your developers tools console or network to see what the error was.</p></div>';
     $('#discover-body').hide();
     $('#discover-response').replaceWith(response);
-    $('#discover-response').show()
+    $('#discover-response').show();
   });
 });
 $('#upload-device').change(function(e) {
@@ -377,4 +377,7 @@ $('#upload-other').click(function (e) {
     }
     $('#upload-device').find('option').remove().end().append($(optionsAsString));
   }
+});
+$("#export-text").click(function() {
+    this.href = "data:text/plain;charset=utf-8," + encodeURIComponent(editor.doc.getValue()), this.download = "irule.txt"
 });
