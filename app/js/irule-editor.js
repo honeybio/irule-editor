@@ -90,6 +90,11 @@ $(document).ready(function() {
     return $("#codemirror-container").height();
   });
 });
+$(window).resize(function(){
+  $(".CodeMirror").height(function () {
+    return $("#codemirror-container").height();
+  });
+});
 $('#close-help-panel').mouseover().css( 'cursor', 'pointer' );
 $('#close-help-panel').click(function() {
   var d = new Date();
