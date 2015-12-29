@@ -36,7 +36,14 @@ body{
 }
 
 .editor-container {
-  height: 80%;
+	/* Firefox */
+	height: -moz-calc(100vh - 190px);
+	/* WebKit */
+	height: -webkit-calc(100vh - 190px);
+	/* Opera */
+	height: -o-calc(100vh - 190px);
+	/* Standard */
+	height: calc(100vh - 190px);
 }
 
 .copy-right {

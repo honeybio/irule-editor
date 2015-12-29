@@ -24,7 +24,6 @@ var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
   lineNumbers: true,
   indentUnit: 2,
   indentAuto: true,
-  viewportMargin: 35,
   foldGutter: {
     rangeFinder: new CodeMirror.fold.combine(CodeMirror.fold.brace, CodeMirror.fold.comment)
   },
@@ -86,6 +85,10 @@ $(document).ready(function() {
     }
   }
   $("#side-menu").metisMenu();
+
+  $(".CodeMirror").height(function () {
+    return $("#codemirror-container").height();
+  });
 });
 $('#close-help-panel').mouseover().css( 'cursor', 'pointer' );
 $('#close-help-panel').click(function() {
