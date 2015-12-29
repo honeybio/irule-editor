@@ -69,7 +69,7 @@
             <li><a id="clear" href="#">Clear iRule</a></li>
             <li><a id="random-rule" href="#">Random iRule</a></li>
             <li><a id="export-text" href="#">Download Rule</a></li>
-            <li><a id="save-offline" href="#">Save to Offline Rules</a></li>
+            <!--<li><a id="save-offline" href="#">Save to Offline Rules</a></li>-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a id="show-help" href="#" data-toggle="modal" data-target="#builder-help-modal">How to Use Editor</a></li>
@@ -91,6 +91,10 @@
         <aside class="sidebar">
           <nav class="sidebar-nav">
             <ul class="metismenu" id="side-menu">
+              <li>
+                <a id="selected-rule" href="#" aria-expanded="false">Current Rule</a>
+
+              </li>
               <li>
                 <a href="#" aria-expanded="false">Save to BIG-IP<span class="glyphicon arrow"></span></a>
                 <ul aria-expanded="false">
@@ -282,7 +286,7 @@ when HTTP_RESPONSE {
               <div id="discover-response"></div>
               <div id="discover-body">
                 Note that this is done with jQuery on your browser, and no data is stored with honeyb.io.
-                You'll need to follow our CORS guide for BIG-IP REST iControl, to allow your browser to import the data.
+                You'll need to follow our <a href="/kb/cors.html">BIG-IP CORS guide</a> for BIG-IP REST iControl, to allow your browser to import the data.
                 <div class="form-group">
                   <label for="ipAddr">IP address</label>
                   <input type="text" class="form-control" id="ipAddr" placeholder="IP Address">

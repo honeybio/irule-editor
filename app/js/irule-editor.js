@@ -235,6 +235,7 @@ $('#offline-rule-list').on("click", "li", function (e) {
       editor.doc.setValue(iRuleHoneyText + myRule.apiAnonymous);
     }
   }
+  $('#form-rule-name').val(e.target.text).trigger("change");
 });
 $('[id$=bigip-rule-list]').on("click", "li", function (e) {
   if (e.target.id === undefined) {
@@ -245,7 +246,9 @@ $('[id$=bigip-rule-list]').on("click", "li", function (e) {
   var ip = e.target.name;
   var name = e.target.id.replace(ip, '');
   var myRule = getRule(ip, name);
-  if (myRule !== null) {
+  if (myRule === null || myRule.apiAnonymous === undefined) {
+    editor.doc.setValue(iRuleHoneyText + '# Blank Rule\n');
+  } else {
     if (myRule.apiAnonymous.match(/honeyb/)) {
       editor.doc.setValue(myRule.apiAnonymous);
       $('input[name="deviceIp"]').val(ip);
@@ -257,9 +260,8 @@ $('[id$=bigip-rule-list]').on("click", "li", function (e) {
       $('input[name="ruleName"]').val(myRule.name);
       $('input[name="rulePath"]').val(myRule.fullPath);
     }
-  } else {
-    editor.doc.setValue(iRuleHoneyText + '# Rule not found!');
   }
+  $('#form-rule-name').val(e.target.text).trigger("change");
 });
 $('#device-table-div').on("click", "a", function(e) {
   simpleStorage.deleteKey(simpleStorage.index()[e.target.id.replace(/-storage-table/, '')]);
@@ -380,4 +382,7 @@ $('#upload-other').click(function (e) {
 });
 $("#export-text").click(function() {
     this.href = "data:text/plain;charset=utf-8," + encodeURIComponent(editor.doc.getValue()), this.download = "irule.txt"
+});
+$("#form-rule-name").change(function () {
+  $('#selected-rule').text($('#form-rule-name')[0].value);
 });
