@@ -140,23 +140,17 @@
             <div class="col-md-12">
               <div id="codemirror-container" class="irule-form editor-container">
 <textarea id="code" name="code">
-## This iRule was built with the honeyb.io iRule editor. Check it out!
-## https://honeyb.io/irule-editor or contact us at help@honeyb.io
-## Need help editing this iRule or optimizing it? Contact our F5 geniuses!
+## honeyb.io iRule editor. Mac, Linux, Windows Compatible. The first Browser based f5
+## iRule editor with a built-in REST client, syntax highlighting, error checking, and
+## HTML 5 local storage, contact us for feature suggestio4ns or to get a local server
 
 when HTTP_REQUEST {
-  if {[HTTP::uri] eq $class_honeyb_redirect} {
-    HTTP::redirect "https://honeyb.io/irule-editor"
-    return
+  if {[HTTP::uri] contains "irule editor"} {
+    HTTP::redirect "https://honeyb.io/irule-editor/"
   }
 }
 when HTTP_RESPONSE {
-  if {[HTTP::status] eq 200} {
-    return
-  } else {
-    # Drop and delete connection
-    drop
-  }
+   # Start writing great iRules!
 }
 </textarea>
                 </div>
