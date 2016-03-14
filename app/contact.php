@@ -6,8 +6,8 @@
   $addr = test_input($_POST["emailAddress"]);
   $mesg = test_input($_POST["contactMessage"]);
 
-  $message = "Hi Annika,\n\n We have a contact request from " . $first . ' ' .  $last . ".\n\n He works at: " . $comp . "\n\n and here is his email: \n" . $addr . "\r\nThe message is: \r\n" . $mesg;
-  mail('annika@bespintech.com', 'Contact Request', $message);
+  $message = "Hi Admin,\n\n We have a contact request from " . $first . ' ' .  $last . ".\n\n His department is: " . $comp . "\n\n and here is his email: \n" . $addr . "\r\nThe message is: \r\n" . $mesg;
+  mail('root@localhost', 'Contact Request', $message);
 
   function test_input($data) {
     $data = trim($data);
@@ -21,8 +21,8 @@
   <center><h3>Thanks for Contacting us <?php echo $first; ?>!</h3></center>
   <br>
   We'll take a look at your request and respond to <?php echo $addr; ?>.
-  If you don't get an email within the next 6-8 hours, please contact us at demo@honeyb.io
+  If you don't get an email within the next 6-8 hours, please contact root@localhost
   <br>
   <br>
-  Sincerely, honeyb.io team!
+  Sincerely, Your bigip team!
 </div>
